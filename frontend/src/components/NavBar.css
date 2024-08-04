@@ -1,63 +1,74 @@
-.navbar {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-}
+/* Navbar.css */
 
-.navbar-container {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.navbar-logo {
-  font-size: 24px;
-  font-weight: bold;
-  text-decoration: none;
+  padding: 1rem 2rem;
+  background-color: #333;
   color: white;
+  position: fixed; /* Make the Navbar fixed */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensure the Navbar covers the full width */
+  z-index: 1000; /* Ensure the Navbar is above other content */
 }
 
-.navbar-menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.navbar-logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-links {
   display: flex;
-  align-items: center;
+  list-style: none;
 }
 
 .navbar-item {
   position: relative;
-  margin: 0 15px;
+  margin: 0 1rem;
 }
 
-.navbar-link {
-  text-decoration: none;
+.navbar-item a {
   color: white;
-  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.dropdown {
   cursor: pointer;
 }
 
-.navbar-right {
-  display: flex;
-}
-
-.dropdown-menu {
+.dropdown-content {
+  display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #4CAF50;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #444;
+  min-width: 200px;
   z-index: 1;
-  min-width: 160px;
 }
 
-.dropdown-link {
-  display: block;
-  padding: 10px;
-  text-decoration: none;
+.dropdown-content a {
   color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
 }
 
-.dropdown-link:hover {
-  background-color: #45a049;
+.dropdown-content a:hover {
+  background-color: #555;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover > span {
+  color: #ddd;
+}
+
+/* Add margin-top to the main content to prevent overlap with the fixed Navbar */
+.main-content {
+  margin-top: 80px; /* Adjust based on the height of the Navbar */
 }

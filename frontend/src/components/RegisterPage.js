@@ -1,26 +1,29 @@
 // src/components/RegisterPage.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { registerUser } from '../app/registerSlice';
 import './RegisterPage.css';
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('donor'); // default role
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { loading, error, success } = useSelector((state) => state.register);
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('/api/register', { email, password, role });
-      if (response.data.success) {
-        navigate('/login'); // Redirect to login page
-      }
-    } catch (error) {
-      console.error('Registration failed', error);
-    }
+    dispatch(registerUser({ email, password, role }));
   };
+
+  useEffect(() => {
+    if (success) {
+      navigate('/login'); // Redirect to login page
+    }
+  }, [success, navigate]);
 
   return (
     <div className='register-page'>
@@ -54,7 +57,10 @@ const RegisterPage = () => {
             <option value='administrator'>Administrator</option>
           </select>
         </div>
-        <button type='submit'>Register</button>
+        {error && <p className='error'>{error}</p>}
+        <button type='submit' disabled={loading}>
+          {loading ? 'Registering...' : 'Register'}
+        </button>
       </form>
     </div>
   );
