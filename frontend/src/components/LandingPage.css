@@ -229,3 +229,14 @@
   max-height: 300px; /* Optional: Limit the height of the image */
 }
 
+/* Styles for the social-links class to make the icons smaller and evenly spaced */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between icons */
+}
+
+.social-links .social-icon {
+  width: 40px; /* Adjust the size as needed */
+  height: 40px; /* Adjust the size as needed */
+}
