@@ -5,7 +5,7 @@
     align-items: center;
     min-height: calc(100vh - 60px); /* Adjust height to account for header and footer */
     background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    padding: 20px;
+    padding: 50px;
     box-sizing: border-box;
   }
   

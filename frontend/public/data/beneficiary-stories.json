@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "story": "Alice Johnson was struggling to afford school supplies. Through the charity's support, she received a scholarship and essential learning materials. Today, Alice is a top student, excelling in her studies and aspiring to become a doctor to give back to her community.",
+      "image": "beneficiary1"
+    },
+    {
+      "id": 2,
+      "name": "Bob Smith",
+      "story": "Bob Smith, a young engineer, faced many challenges due to financial constraints. The charity provided him with the resources to continue his education and a laptop for his projects. Bob now works at a renowned tech company and mentors other young engineers.",
+      "image": "beneficiary2"
+    },
+    {
+      "id": 3,
+      "name": "Catherine Lee",
+      "story": "Catherine Lee was a single mother struggling to provide for her child. The charity offered her a micro-loan to start a small business. With this support, Catherine successfully opened a local bakery, and she is now a proud entrepreneur who supports other single mothers in her community.",
+      "image": "beneficiary3"
+    },
+    {
+      "id": 4,
+      "name": "David Kim",
+      "story": "David Kim was facing severe health issues due to lack of access to medical care. The charity's health program provided him with necessary treatments and medication. David is now healthy and actively involved in spreading awareness about health and wellness in his community.",
+      "image": "beneficiary4"
+    },
+    {
+      "id": 5,
+      "name": "Emma Brown",
+      "story": "Emma Brown, an aspiring artist, struggled to afford art supplies and training. The charity funded her art education and provided her with materials. Emma's artwork has been featured in several exhibitions, and she now teaches art to underprivileged children.",
+      "image": "beneficiary5"
+    }
+  ]
+  

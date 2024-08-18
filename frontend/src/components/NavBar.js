@@ -13,6 +13,9 @@ const NavBar = ({ user, setUser }) => {
 
   const isAdmin = user && user.role === "admin";
   const isCharity = user && user.role === "charity";
+  const isDonor = user && user.role === "donor";
+ 
+ ;
 
   return (
     <nav className="navbar">
@@ -35,7 +38,7 @@ const NavBar = ({ user, setUser }) => {
                   </Link>
                 </li>
               )}
-              {!isAdmin && (
+              {isDonor && (
                 <li className="navbar-item">
                   <Link to="/donor_dashboard" className="navbar-link">
                     Donor Dashboard
@@ -78,6 +81,16 @@ const NavBar = ({ user, setUser }) => {
           <li className="navbar-item">
             <Link to="/create_charity" className="navbar-link">
               Register Charity
+            </Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/stories" className="navbar-link">
+              Beneficiaries
+            </Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/beneficiaries" className="navbar-link">
+              Beneficiary
             </Link>
           </li>
           <li className="navbar-item">

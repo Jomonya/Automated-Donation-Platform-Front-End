@@ -1,19 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Beneficiaries from "./Beneficiaries";
+import BeneficiaryStories from "./BeneficiaryStories";
 import "./CharityDashboard1.css";
 
 const CharityDashboard1 = ({ user }) => {
   const [charityDetails, setCharityDetails] = useState(null);
-  const [beneficiaries, setBeneficiaries] = useState([]);
-  const [stories, setStories] = useState([]);
   const [donors, setDonors] = useState([]);
   const [anonymousDonations, setAnonymousDonations] = useState(0);
   const [totalDonations, setTotalDonations] = useState(0);
-  const [newStory, setNewStory] = useState({ title: '', content: '', image: '' });
-  const [editBeneficiary, setEditBeneficiary] = useState(null);
-  const [updatedBeneficiary, setUpdatedBeneficiary] = useState({ name: '', description: '', inventory: [] });
-  const [newBeneficiary, setNewBeneficiary] = useState({ name: '', description: '', inventory: [] });
   const { username, id } = user;
   const navigate = useNavigate();
 
@@ -23,24 +19,6 @@ const CharityDashboard1 = ({ user }) => {
       setCharityDetails(response.data);
     } catch (error) {
       console.error("Error fetching charity details:", error);
-    }
-  }, [id]);
-
-  const fetchBeneficiaries = useCallback(async () => {
-    try {
-      const response = await axios.get(`/charities/${id}/beneficiaries`);
-      setBeneficiaries(response.data);
-    } catch (error) {
-      console.error("Error fetching beneficiaries:", error);
-    }
-  }, [id]);
-
-  const fetchStories = useCallback(async () => {
-    try {
-      const response = await axios.get(`/charities/${id}/stories`);
-      setStories(response.data);
-    } catch (error) {
-      console.error("Error fetching stories:", error);
     }
   }, [id]);
 
@@ -55,56 +33,31 @@ const CharityDashboard1 = ({ user }) => {
     }
   }, [id]);
 
+  const fetchBeneficiaries = useCallback(async () => {
+    try {
+      const response = await axios.get(`/charities/${id}/beneficiaries`);
+      // Process the response data or pass it to Beneficiaries component as needed
+    } catch (error) {
+      console.error("Error fetching beneficiaries:", error);
+    }
+  }, [id]);
+
+  const fetchStories = useCallback(async () => {
+    try {
+      const response = await axios.get(`/charities/${id}/beneficiary-stories`);
+      // Process the response data or pass it to BeneficiaryStories component as needed
+    } catch (error) {
+      console.error("Error fetching stories:", error);
+    }
+  }, [id]);
+
   useEffect(() => {
     fetchCharityDetails();
-    fetchBeneficiaries();
-    fetchStories();
     fetchDonorData();
-  }, [fetchCharityDetails, fetchBeneficiaries, fetchStories, fetchDonorData]);
+  }, [fetchCharityDetails, fetchDonorData]);
 
   const handleRegisterCharity = () => {
     navigate("/create_charity");
-  };
-
-  const handlePostStory = async () => {
-    if (!newStory.title || !newStory.content) {
-      console.error("Story title and content are required.");
-      return;
-    }
-
-    try {
-      const response = await axios.post(`/charities/${id}/stories`, newStory);
-      if (response.status === 201) {
-        console.log("Story posted successfully:", response.data);
-        setNewStory({ title: '', content: '', image: '' });
-        fetchStories();
-      } else {
-        console.error("Failed to post story. Status code:", response.status);
-      }
-    } catch (error) {
-      console.error("Error posting story:", error.response ? error.response.data : error.message);
-    }
-  };
-
-  const handleUpdateBeneficiary = async () => {
-    try {
-      await axios.put(`/charities/${id}/beneficiaries/${editBeneficiary.id}`, updatedBeneficiary);
-      setEditBeneficiary(null);
-      setUpdatedBeneficiary({ name: '', description: '', inventory: [] });
-      fetchBeneficiaries();
-    } catch (error) {
-      console.error("Error updating beneficiary:", error);
-    }
-  };
-
-  const handleAddBeneficiary = async () => {
-    try {
-      await axios.post(`/charities/${id}/beneficiaries`, newBeneficiary);
-      setNewBeneficiary({ name: '', description: '', inventory: [] });
-      fetchBeneficiaries();
-    } catch (error) {
-      console.error("Error adding beneficiary:", error);
-    }
   };
 
   return (
@@ -121,7 +74,7 @@ const CharityDashboard1 = ({ user }) => {
 
       <div className="uniqueMainContent">
         <h1 className="uniqueMainHeading">Charity Dashboard</h1>
-        <p className="uniqueMainWelcome">Welcome, {username}! Here you can manage your charity details, beneficiaries, and stories.</p>
+        <p className="uniqueMainWelcome">Welcome, {username}! Here you can manage your charity details and donors.</p>
 
         <button className="uniqueMainButton" onClick={handleRegisterCharity}>
           Register a New Charity
@@ -172,111 +125,8 @@ const CharityDashboard1 = ({ user }) => {
           </div>
         </div>
 
-        <div id="beneficiaries" className="uniqueBeneficiaries">
-          <h2 className="uniqueSectionHeading">Beneficiaries</h2>
-          {beneficiaries.length > 0 ? (
-            beneficiaries.map((beneficiary) => (
-              <div key={beneficiary.id} className="uniqueBeneficiaryItem">
-                <p className="uniqueSectionParagraph">Name: {beneficiary.name}</p>
-                <p className="uniqueSectionParagraph">Description: {beneficiary.description}</p>
-                <p className="uniqueSectionParagraph">Inventory Sent: {beneficiary.inventory.join(', ')}</p>
-                <button className="uniqueMainButton" onClick={() => setEditBeneficiary(beneficiary)}>Edit</button>
-              </div>
-            ))
-          ) : (
-            <p className="uniqueSectionParagraph">No beneficiaries found.</p>
-          )}
-          <div className="uniqueAddBeneficiary">
-            <h3 className="uniqueSubHeading">Add New Beneficiary</h3>
-            <input
-              type="text"
-              placeholder="Beneficiary Name"
-              value={newBeneficiary.name}
-              onChange={(e) => setNewBeneficiary({ ...newBeneficiary, name: e.target.value })}
-              className="uniqueInput"
-            />
-            <textarea
-              placeholder="Beneficiary Description"
-              value={newBeneficiary.description}
-              onChange={(e) => setNewBeneficiary({ ...newBeneficiary, description: e.target.value })}
-              className="uniqueTextarea"
-            />
-            <input
-              type="text"
-              placeholder="Inventory Items (comma-separated)"
-              value={newBeneficiary.inventory}
-              onChange={(e) => setNewBeneficiary({ ...newBeneficiary, inventory: e.target.value.split(',') })}
-              className="uniqueInput"
-            />
-            <button className="uniqueMainButton" onClick={handleAddBeneficiary}>Add Beneficiary</button>
-          </div>
-
-          {editBeneficiary && (
-            <div className="uniqueEditBeneficiary">
-              <h3 className="uniqueSubHeading">Edit Beneficiary</h3>
-              <input
-                type="text"
-                placeholder="Beneficiary Name"
-                value={updatedBeneficiary.name}
-                onChange={(e) => setUpdatedBeneficiary({ ...updatedBeneficiary, name: e.target.value })}
-                className="uniqueInput"
-              />
-              <textarea
-                placeholder="Beneficiary Description"
-                value={updatedBeneficiary.description}
-                onChange={(e) => setUpdatedBeneficiary({ ...updatedBeneficiary, description: e.target.value })}
-                className="uniqueTextarea"
-              />
-              <input
-                type="text"
-                placeholder="Inventory Items (comma-separated)"
-                value={updatedBeneficiary.inventory}
-                onChange={(e) => setUpdatedBeneficiary({ ...updatedBeneficiary, inventory: e.target.value.split(',') })}
-                className="uniqueInput"
-              />
-              <button className="uniqueMainButton" onClick={handleUpdateBeneficiary}>Update Beneficiary</button>
-            </div>
-          )}
-        </div>
-
-        <div id="stories" className="uniqueStories">
-          <h2 className="uniqueSectionHeading">Beneficiary Stories</h2>
-          {stories.length > 0 ? (
-            stories.map(story => (
-              <div key={story.id} className="uniqueStoryItem">
-                <h3 className="uniqueStoryTitle">{story.title}</h3>
-                <p className="uniqueSectionParagraph">{story.content}</p>
-                {story.image && <img src={story.image} alt={story.title} className="uniqueStoryImage" />}
-              </div>
-            ))
-          ) : (
-            <p className="uniqueSectionParagraph">No stories found.</p>
-          )}
-          <div className="uniquePostStory">
-            <h3 className="uniqueSubHeading">Post a New Story</h3>
-            <input
-              type="text"
-              placeholder="Story Title"
-              value={newStory.title}
-              onChange={(e) => setNewStory({ ...newStory, title: e.target.value })}
-              className="uniqueInput"
-            />
-            <textarea
-              placeholder="Story Content"
-              value={newStory.content}
-              onChange={(e) => setNewStory({ ...newStory, content: e.target.value })}
-              className="uniqueTextarea"
-            />
-            <input
-              type="text"
-              placeholder="Image URL"
-              value={newStory.image}
-              onChange={(e) => setNewStory({ ...newStory, image: e.target.value })}
-              className="uniqueInput"
-            />
-            <button className="uniqueMainButton" onClick={handlePostStory}>Post Story</button>
-          </div>
-        </div>
+        <Beneficiaries charityId={id} fetchBeneficiaries={fetchBeneficiaries} />
+        <BeneficiaryStories charityId={id} fetchStories={fetchStories} />
       </div>
     </div>
   );
