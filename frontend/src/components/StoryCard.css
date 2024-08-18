@@ -1,0 +1,29 @@
+/* src/components/StoryCard.css */
+
+.storyCard {
+    background-color: #fff; /* White background */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Padding inside the card */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+    margin: 16px 0; /* Space between cards */
+  }
+  
+  .storyCard:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  }
+  
+  .storyCard__title {
+    font-size: 1.5em; /* Large title font size */
+    color: #333; /* Dark text color */
+    margin-bottom: 8px; /* Space below the title */
+  }
+  
+  .storyCard__description {
+    font-size: 1em; /* Normal description font size */
+    color: #555; /* Medium dark text color */
+    line-height: 1.5; /* Comfortable line spacing */
+  }
+  

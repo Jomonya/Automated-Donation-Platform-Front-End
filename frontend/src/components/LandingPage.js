@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./LandingPage.css";
-import StoryCard from "./StoryCard";
+import StoryCard from './StoryCard';
 
 const LandingPage = () => {
   const [charities, setCharities] = useState([]);
