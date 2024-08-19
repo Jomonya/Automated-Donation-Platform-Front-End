@@ -8,7 +8,7 @@ const LandingPage = () => {
   const scrollRef = useRef(null);
 
   useEffect(() => {
-    // Fetch charities from your local server
+    
     fetch("/charities")
       .then((response) => response.json())
       .then((data) => setCharities(data))
@@ -16,7 +16,7 @@ const LandingPage = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch beneficiary_stories from your local server
+    // Fetch 
     fetch("/beneficiary_stories")
       .then((response) => response.json())
       .then((data) => {
@@ -29,14 +29,14 @@ const LandingPage = () => {
 
   const scrollLeft = () => {
     scrollRef.current.scrollBy({
-      left: -300, // Adjust this value based on the width of your cards
+      left: -300,
       behavior: "smooth",
     });
   };
 
   const scrollRight = () => {
     scrollRef.current.scrollBy({
-      left: 300, // Adjust this value based on the width of your cards
+      left: 300, 
       behavior: "smooth",
     });
   };
@@ -124,91 +124,94 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="landingPage__about">
-        <h2 className="landingPage__sectionTitle">About Us</h2>
-        <div className="landingPage__aboutContent">
-          <div className="landingPage__aboutText">
-            <p>
-              In many Sub-Saharan countries, school-going girls miss out on
-              education due to lack of sanitary towels and lack of proper
-              sanitary facilities. Our platform aims to address this issue by
-              enabling easy and regular donations to charities working on this
-              cause.
-            </p>
-          </div>
-          <div className="landingPage__aboutImage">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_KZrd0akrx3gxDbL2Xcc9bEsJAO5Kb-btDQ&s"
-              alt="About Us"
-            />
-          </div>
-        </div>
-
-        <div className="landingPage__beneficiaryStory">
-          <h3 className="landingPage__storyTitle">Beneficiary Story</h3>
-          {beneficiary_stories.map((story) => (
-            <StoryCard key={story.id} story={story} />
-          ))}
-        </div>
+      <section className="landingPage__beneficiaryStory">
+        <h3 className="landingPage__storyTitle">Beneficiary Story</h3>
+        {beneficiary_stories.map((story) => (
+          <StoryCard key={story.id} story={story} />
+        ))}
       </section>
 
-      <section className="landingPage__contact">
-        <h2 className="landingPage__sectionTitle">Contact Us</h2>
-        <form className="landingPage__contactForm">
-          <div className="landingPage__formGroup">
-            <label htmlFor="name" className="landingPage__formLabel">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              className="landingPage__formInput"
-            />
+      <section className="landingPage__aboutContact">
+        <div className="landingPage__about">
+          <h2 className="landingPage__sectionTitle">About Us</h2>
+          <div className="landingPage__aboutContent">
+            <div className="landingPage__aboutText">
+              <p>
+                In many Sub-Saharan countries, school-going girls miss out on
+                education due to lack of sanitary towels and lack of proper
+                sanitary facilities. Our platform aims to address this issue by
+                enabling easy and regular donations to charities working on this
+                cause.
+              </p>
+          
+            </div>
+            <div className="landingPage__aboutImage">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_KZrd0akrx3gxDbL2Xcc9bEsJAO5Kb-btDQ&s"
+                alt="About Us"
+              />
+            </div>
           </div>
-          <div className="landingPage__formGroup">
-            <label htmlFor="email" className="landingPage__formLabel">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              className="landingPage__formInput"
-            />
-          </div>
-          <div className="landingPage__formGroup">
-            <label htmlFor="message" className="landingPage__formLabel">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              required
-              className="landingPage__formTextarea"
-            ></textarea>
-          </div>
-          <button type="submit" className="landingPage__formButton">
-            Send Message
-          </button>
-        </form>
-        <div className="landingPage__subscription">
-          <h3 className="landingPage__subscriptionTitle">
-            Subscribe to Our Newsletter
-          </h3>
-          <form className="landingPage__subscriptionForm">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              required
-              className="landingPage__subscriptionInput"
-            />
-            <button type="submit" className="landingPage__subscriptionButton">
-              Subscribe
+        </div>
+
+        <div className="landingPage__contact">
+          <h2 className="landingPage__sectionTitle">Contact Us</h2>
+          <form className="landingPage__contactForm">
+            <div className="landingPage__formGroup">
+              <label htmlFor="name" className="landingPage__formLabel">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                className="landingPage__formInput"
+              />
+            </div>
+            <div className="landingPage__formGroup">
+              <label htmlFor="email" className="landingPage__formLabel">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                className="landingPage__formInput"
+              />
+            </div>
+            <div className="landingPage__formGroup">
+              <label htmlFor="message" className="landingPage__formLabel">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                className="landingPage__formTextarea"
+              ></textarea>
+            </div>
+            <button type="submit" className="landingPage__formButton">
+              Send Message
             </button>
+            <div className="landingPage__subscription">
+              <h3 className="landingPage__subscriptionTitle">
+                Subscribe to Our Newsletter
+              </h3>
+              <form className="landingPage__subscriptionForm">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                  className="landingPage__subscriptionInput"
+                />
+                <button type="submit" className="landingPage__subscriptionButton">
+                  Subscribe
+                </button>
+              </form>
+            </div>
           </form>
         </div>
       </section>

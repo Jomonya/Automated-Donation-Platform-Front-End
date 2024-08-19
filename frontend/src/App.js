@@ -18,8 +18,8 @@ import AdminDashboard from "./components/AdminDashboard";
 import CreateCharity from "./components/CreateCharity";
 import CharityDashboardAdmin from "./components/CharityDashboardAdmin";
 import CharityDashboard1 from "./components/CharityDashboard1";
-import Stories from "./components/Stories";
 import Beneficiaries from "./components/Beneficiaries";
+import BeneficiaryStories from "./components/BeneficiaryStories";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -79,7 +79,8 @@ const App = () => {
         <Route path="/charities" element={<CharityList />} />
         <Route path="/beneficiaries" element={<Beneficiaries />} />
         <Route path="/create_charity" element={<CreateCharity />} />
-        <Route path="/stories" element={<Stories />} />
+        <Route path="/stories" element={<BeneficiaryStories />} />
+        
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />

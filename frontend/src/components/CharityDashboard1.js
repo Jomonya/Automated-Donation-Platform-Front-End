@@ -15,7 +15,7 @@ const CharityDashboard1 = ({ user }) => {
 
   const fetchCharityDetails = useCallback(async () => {
     try {
-      const response = await axios.get(`/charities/${id}`);
+      const response = await axios.get(`https://automated-donation-platform-backend-15.onrender.com/charities`);
       setCharityDetails(response.data);
     } catch (error) {
       console.error("Error fetching charity details:", error);
@@ -24,7 +24,7 @@ const CharityDashboard1 = ({ user }) => {
 
   const fetchDonorData = useCallback(async () => {
     try {
-      const response = await axios.get(`/charities/${id}/donors`);
+      const response = await axios.get(`https://automated-donation-platform-backend-15.onrender.com/charities`);
       setDonors(response.data.donors);
       setAnonymousDonations(response.data.anonymousDonations);
       setTotalDonations(response.data.totalDonations);
@@ -35,8 +35,8 @@ const CharityDashboard1 = ({ user }) => {
 
   const fetchBeneficiaries = useCallback(async () => {
     try {
-      const response = await axios.get(`/charities/${id}/beneficiaries`);
-      // Process the response data or pass it to Beneficiaries component as needed
+      const response = await axios.get(`https://automated-donation-platform-backend-15.onrender.com/charities`);
+      
     } catch (error) {
       console.error("Error fetching beneficiaries:", error);
     }
@@ -44,8 +44,8 @@ const CharityDashboard1 = ({ user }) => {
 
   const fetchStories = useCallback(async () => {
     try {
-      const response = await axios.get(`/charities/${id}/beneficiary-stories`);
-      // Process the response data or pass it to BeneficiaryStories component as needed
+      const response = await axios.get('https://automated-donation-platform-backend-15.onrender.com/charities');
+      
     } catch (error) {
       console.error("Error fetching stories:", error);
     }

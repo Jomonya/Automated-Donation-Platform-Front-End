@@ -88,11 +88,7 @@ const NavBar = ({ user, setUser }) => {
               Beneficiaries
             </Link>
           </li>
-          <li className="navbar-item">
-            <Link to="/beneficiaries" className="navbar-link">
-              Beneficiary
-            </Link>
-          </li>
+      
           <li className="navbar-item">
             <Link to="/charities" className="navbar-link">
               Charity List

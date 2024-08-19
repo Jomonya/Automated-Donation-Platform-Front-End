@@ -8,8 +8,8 @@ const Footer = () => (
       <p>&copy; 2024 Automated Donation Platform. All rights reserved.</p>
       <div className="contact-info">
         <p>Email: support@donationplatform.com</p>
-        <p>Phone: +123 456 7890</p>
-        <p>Address: 123 Charity Lane, Donation City, Country</p>
+        <p>Phone: +122 246 7990</p>
+        <p>Address: 123 Charity Lane, Nairobi City, Kenya</p>
       </div>
       <div className="social-icons">
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
